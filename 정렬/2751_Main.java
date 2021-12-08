@@ -1,31 +1,33 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NumberFormatException, IOException {
 
-		Scanner sc = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		
-		int n = sc.nextInt();
+		// Arrays.sort() 메소드 
+		// 평균 시간 복잡도가 O(nlongn)이지만 최악의 경우 O(n^2) -> 시간초과
 
+		int n = Integer.parseInt(br.readLine());
+		
 		ArrayList<Integer> list = new ArrayList<>();
-
+	
 		for (int i = 0; i < n; i++) {
-			list.add(sc.nextInt());
+			list.add(Integer.parseInt(br.readLine()));
 		}
-
-		// java.util.Collections 클래스에서 제공하는 static 메소드 -> sort()		
-		Collections.sort(list);
-
+		
+		Collections.sort(list); // 오름차순 정렬
 		
 		for(int num : list) {
 			sb.append(num).append('\n');
 		}
 		
 		System.out.println(sb);
-
 	}
 }
