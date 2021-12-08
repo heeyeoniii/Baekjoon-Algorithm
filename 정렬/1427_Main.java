@@ -1,28 +1,25 @@
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
-		Scanner sc = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		String str = sc.next();
-
-		List<Character> list = new ArrayList<>();
+		String str = br.readLine();
+		int arr[] = new int[str.length()];
 
 		for (int i = 0; i < str.length(); i++) {
-			list.add(str.charAt(i));
+			arr[i] = str.charAt(i) - '0';
 		}
 
-		Collections.sort(list);
-		Collections.reverse(list);
+		Arrays.sort(arr);
 
-		for (char num : list) {
-			System.out.print(num);
+		for (int i = str.length() - 1; i >= 0; i--) {
+			System.out.print(arr[i]);
 		}
 	}
 }
