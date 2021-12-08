@@ -1,26 +1,30 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
-public class Main {
+public class  {
 
-	public static void main(String[] args) throws NumberFormatException, IOException {
+	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
-		
+
+		int[] cnt = new int[10001]; // 수 범위 : 0 ~ 10000
+
 		int n = Integer.parseInt(br.readLine());
-		int[] arr = new int[n];
-		
-		for(int i=0; i<n; i++) {
-			arr[i] = Integer.parseInt(br.readLine());
+
+		for (int i = 0; i < n; i++) {
+			cnt[Integer.parseInt(br.readLine())]++; // 해당 인덱스 값 1 증가
 		}
-		
-		Arrays.sort(arr);
-		
-		for(int i=0; i<n; i++) {
-			sb.append(arr[i]).append('\n');
+
+		br.close();
+
+		StringBuilder sb = new StringBuilder();
+
+		for (int i = 1; i < 10001; i++) {
+			while (cnt[i] > 0) {
+				sb.append(i).append('\n');
+				cnt[i]--;
+			}
 		}
 		System.out.println(sb);
 
