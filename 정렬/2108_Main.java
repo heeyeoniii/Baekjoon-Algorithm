@@ -1,32 +1,65 @@
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
-		Scanner sc = new Scanner(System.in);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		int n = sc.nextInt();
+		int n = Integer.parseInt(br.readLine());
+		int[] arr = new int[n];
+		int[] cnt = new int[n];
+
 		int sum = 0;
 
-		List<Integer> list = new ArrayList<>();
-
 		for (int i = 0; i < n; i++) {
-			list.add(sc.nextInt());
-			sum += list.get(i);
+			arr[i] = Integer.parseInt(br.readLine());
 		}
 
-		System.out.println(Math.round(sum / n)); // 산술평균
-		// Math.round(num) : 소숫점 첫째자리에서 반올림
+		Arrays.sort(arr);
 
-		Collections.sort(list);
-		System.out.println(list.get(n / 2)); // 중앙값
-		
-		System.out.println(list.get(n - 1) - list.get(0)); // 최댓값 - 최솟값
+		for (int i = 0; i < n; i++) {
+			sum += arr[i];
+		}
 
+		// 최빈값 구하기
+		int mode_max = 0; // 최빈값의 최댓값
+		int mode = 10000; // 최빈값
+		boolean flag = false;
+
+		for (int i = 0; i < n; i++) {
+			int jump = 0;
+			int count = 1;
+			int i_value = arr[i];
+
+			for (int j = i + 1; j < n; j++) {
+				if (i_value != arr[j]) {
+					break;
+				}
+				count++;
+				jump++;
+			}
+
+			if (count > mode_max) {
+				mode_max = count;
+				mode = i_value;
+				flag = true;
+				
+			} else if (count == mode_max && flag == true) {
+				mode = i_value;
+				flag = false;
+			}
+			i += jump;
+		}
+
+		Arrays.sort(cnt);
+
+		System.out.println((int)Math.round((double)sum / n)); // 산술평균
+		System.out.println(arr[n / 2]); // 중앙값
+		System.out.println(mode); // 최빈값
+		System.out.println(arr[n - 1] - arr[0]); // 최댓값 - 최솟값
 	}
 }
