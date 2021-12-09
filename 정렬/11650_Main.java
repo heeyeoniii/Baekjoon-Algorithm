@@ -1,54 +1,48 @@
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Main {
 
-	public static void main(String[] args) {
-		// 람다식
-		// (매개변수1, ...) -> {함수;}
+	public static void main(String[] args) throws IOException {
 
-		// ex) a + b의 합
-		// int c = (int a, int b) -> {return a + b};
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		Scanner sc = new Scanner(System.in);
+		int num = Integer.parseInt(br.readLine());
+		int[][] arr = new int[num][2];
 
-		int n = sc.nextInt(); // 점의 개수
-		int[][] arr = new int[n][2];
+		StringTokenizer st;
 
-		for (int i = 0; i < n; i++) {
-			arr[i][0] = sc.nextInt();
-			arr[i][1] = sc.nextInt();
-			
+		for (int i = 0; i < num; i++) {
+			st = new StringTokenizer(br.readLine());
+
+			arr[i][0] = Integer.parseInt(st.nextToken());
+			arr[i][1] = Integer.parseInt(st.nextToken());
 		}
 
-		/*
-		Arrays.sort(arr, new Comparator<int[]>() {		
+		// Arrays.sort()에는 이차원 배열을 적용할 수 없다.
+
+		Arrays.sort(arr, new Comparator<int[]>() {
+
 			@Override
-			public int compare(int[] e1, int[] e2) {
-				if(e1[0] == e2[0]) {		// 첫번째 원소가 같다면 두 번째 원소끼리 비교
-					return e1[1] - e2[1];
-				}
-				else {
-					return e1[0] - e2[0];
+			public int compare(int[] o1, int[] o2) {
+
+				if (o1[0] == o2[0]) {
+					return o1[1] - o2[1];
+
+				} else {
+					return o1[0] - o2[0];
 				}
 			}
-		});
-		*/
 
-		Arrays.sort(arr, (e1, e2) -> {
-			if (e1[0] == e2[0]) { 
-				return e1[1] - e2[1];
-			} else {
-				return e1[0] - e2[0];
-			}
 		});
 
-		for (int i = 0; i < n; i++) {
+		for (int i = 0; i < num; i++) {
 			System.out.println(arr[i][0] + " " + arr[i][1]);
 		}
+
 	}
 }
