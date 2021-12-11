@@ -4,9 +4,6 @@ import java.util.Stack;
 
 public class Main {
 
-	public static int[] stack;
-	public static int size = 0; // 요소(데이터)의 개수
-
 	public static void main(String[] args) throws IOException {
 
 		Scanner sc = new Scanner(System.in);
